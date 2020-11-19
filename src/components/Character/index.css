@@ -1,0 +1,8 @@
+/* CHARACTER */
+.character-container {
+  display: flex;
+}
+.character-container .char-img,
+.character-container .char-infos {
+  width: 50%;
+}

@@ -1,0 +1,12 @@
+/* PAGINATION */
+.pagination-container {
+  display: flex;
+}
+.pagination-container .page {
+  width: 25px;
+  height: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid grey;
+}
