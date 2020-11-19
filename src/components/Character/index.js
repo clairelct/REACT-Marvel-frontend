@@ -1,7 +1,7 @@
 import React from "react";
 import "./index.css";
 
-const Character = ({ character }) => {
+const Character = ({ character, comics }) => {
   return (
     <div className="character-container">
       <div className="char-img">
@@ -17,8 +17,19 @@ const Character = ({ character }) => {
           {character.description ? character.description : "Pas de description"}
         </p>
         <div className="char-comics-container">
-          {character.comics.items.map((comic, index) => {
-            return <div key={index}>{comic.name}</div>;
+          {comics.map((comic, index) => {
+            return (
+              <div key={index} className="char-comic-container">
+                <div className="comic-thumb">
+                  <img
+                    src={comic.thumbnail.path + "." + comic.thumbnail.extension}
+                    alt={`Illustration of ${comic.title}`}
+                    className="responsive-img"
+                  />
+                </div>
+                <p>{comic.title}</p>
+              </div>
+            );
           })}
         </div>
       </div>

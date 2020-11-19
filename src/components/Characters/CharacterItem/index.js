@@ -4,11 +4,8 @@ import "./index.css";
 
 const CharacterItem = ({ character }) => {
   return (
-    <Link
-      to={`/characters/${character.id}`}
-      className="characterfiche-container"
-    >
-      <div className="char-img">
+    <Link to={`/characters/${character.id}`} className="item-container">
+      <div className="item-img">
         <img
           className="responsive-img"
           src={character.thumbnail.path + "." + character.thumbnail.extension}

@@ -6,3 +6,14 @@
 .character-container .char-infos {
   width: 50%;
 }
+.char-comics-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+.char-comic-container {
+  width: 30%;
+}
+.comic-thumb {
+  width: 100px;
+  height: 100px;
+}

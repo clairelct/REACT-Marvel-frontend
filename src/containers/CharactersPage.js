@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Loader from "react-loader-spinner";
+//import SearchBar from "../components/Shared/SearchBar";
 import CharacterItem from "../components/Characters/CharacterItem";
 import Pagination from "../components/Shared/Pagination";
 
@@ -9,9 +10,11 @@ const CharactersPage = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [total, setTotal] = useState(0);
   const [offset, setOffset] = useState(0);
+  const [search, setSearch] = useState("");
 
   const limit = 10; // à mettre sur 100
 
+  // Collecte de datas
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -34,6 +37,28 @@ const CharactersPage = () => {
     fetchData();
   }, [offset]);
 
+  // FONCTION DE RECHERCHE
+  const handleChange = (e) => {
+    setSearch(e.target.value);
+
+    // Copie, modifie (filtrage), remplace
+    const searchCharacters = [...characters];
+    const filtered = searchCharacters.filter((character) =>
+      character.name.includes(search)
+    );
+    console.log(filtered);
+    setCharacters(filtered);
+
+    // const newCharacters = [];
+    // for (let i = 0; i < characters.length; i++) {
+    //   // Si le mot-clé existe et renvoie à un emoji
+    //   if (characters[i].name.includes(search)) {
+    //     newCharacters.push(characters[i]);
+    //   }
+    // }
+    // setCharacters(newCharacters);
+  };
+
   return isLoading ? (
     <Loader
       className="loader"
@@ -46,6 +71,18 @@ const CharactersPage = () => {
   ) : (
     <main>
       <div className="container">
+        {/* <SearchBar /> */}
+        <div className="searchbar-container">
+          <form>
+            <input
+              type="search"
+              placeholder="I'm looking after..."
+              onChange={handleChange}
+              value={search}
+            />
+          </form>
+        </div>
+
         <h2>Characters !</h2>
 
         {/* Personnages */}

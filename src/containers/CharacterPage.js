@@ -8,6 +8,7 @@ const CharacterPage = () => {
   const { id } = useParams();
   const [isLoading, setIsLoading] = useState(true);
   const [character, setCharacter] = useState();
+  const [comics, setComics] = useState([]);
   console.log("Character:", character);
 
   useEffect(() => {
@@ -19,13 +20,28 @@ const CharacterPage = () => {
         //console.log("response", response.data);
         if (response.data.code === 200) {
           setCharacter(response.data.data.results[0]);
-          setIsLoading(false);
+          //setIsLoading(false);
         }
       } catch (error) {
         console.log(error);
       }
     };
     fetchData();
+    const fetchDataComics = async () => {
+      try {
+        const response = await axios.get(
+          `http://localhost:3001/characters/${id}/comics`
+        );
+        //console.log("response", response.data);
+        if (response.data.code === 200) {
+          setComics(response.data.data.results);
+          setIsLoading(false);
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchDataComics();
   }, [id]);
 
   return isLoading ? (
@@ -40,7 +56,7 @@ const CharacterPage = () => {
   ) : (
     <main>
       <div className="container">
-        <Character character={character} />
+        <Character character={character} comics={comics} />
       </div>
     </main>
   );
