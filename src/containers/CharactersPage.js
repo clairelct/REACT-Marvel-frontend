@@ -11,6 +11,7 @@ const CharactersPage = () => {
   const [total, setTotal] = useState(0);
   const [offset, setOffset] = useState(0);
   const [search, setSearch] = useState("");
+  const [favCharacters, setFavCharacters] = useState([]);
 
   const limit = 10; // à mettre sur 100
 
@@ -58,6 +59,7 @@ const CharactersPage = () => {
     // }
     // setCharacters(newCharacters);
   };
+  console.log(favCharacters);
 
   return isLoading ? (
     <Loader
@@ -88,7 +90,14 @@ const CharactersPage = () => {
         {/* Personnages */}
         <div className="characters-container">
           {characters.map((character, index) => {
-            return <CharacterItem key={character.id} character={character} />;
+            return (
+              <CharacterItem
+                key={character.id}
+                character={character}
+                favCharacters={favCharacters}
+                setFavCharacters={setFavCharacters}
+              />
+            );
           })}
         </div>
 

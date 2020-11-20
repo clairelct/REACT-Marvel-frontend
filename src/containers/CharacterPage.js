@@ -9,7 +9,7 @@ const CharacterPage = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [character, setCharacter] = useState();
   const [comics, setComics] = useState([]);
-  console.log("Character:", character);
+  //console.log("Character:", character);
 
   useEffect(() => {
     const fetchData = async () => {
