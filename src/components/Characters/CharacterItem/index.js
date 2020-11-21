@@ -2,12 +2,20 @@ import React from "react";
 import { Link } from "react-router-dom";
 import Cookies from "js-cookie";
 import "./index.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const CharacterItem = ({ character, favCharacters, setFavCharacters }) => {
   // FONCTION D'AJOUT EN FAVORIS
   const handleClickFavorite = () => {
     const newTab = [...favCharacters];
-    newTab.push(character.id);
+
+    if (newTab.indexOf(character.id) === -1) {
+      newTab.push(character.id);
+    } else {
+      newTab.splice(newTab.indexOf(character.id), 1);
+    }
+    //console.log(newTab);
+
     // Attention : modif. de state = asynchrone. Cookie set mais state pas fini!
     // Créer une copie pour contourner le problème
     const newFavCharacters = [...newTab];
@@ -23,12 +31,18 @@ const CharacterItem = ({ character, favCharacters, setFavCharacters }) => {
   return (
     <div className="item-container">
       <div
-        className="favorite"
+        className={
+          favCharacters.indexOf(character.id) !== -1
+            ? "favorite added"
+            : "favorite"
+        }
         onClick={() => {
           handleClickFavorite();
         }}
-      ></div>
-      <Link to={`/characters/${character.id}`}>
+      >
+        <FontAwesomeIcon icon="bolt" />
+      </div>
+      <Link to={`/characters/${character.id}`} className="item-flex">
         <div className="item-img">
           <img
             className="responsive-img"
@@ -36,10 +50,18 @@ const CharacterItem = ({ character, favCharacters, setFavCharacters }) => {
             alt={`Portrait of ${character.name}`}
           />
         </div>
-        <h4>{character.name}</h4>
-        <p>
-          {character.description ? character.description : "Pas de description"}
-        </p>
+        <div
+          className={
+            character.description ? "item-infos enlarge" : "item-infos"
+          }
+        >
+          <div className="item-infos-title">
+            <h4>{character.name}</h4>
+          </div>
+          <p className={character.description ? "set" : ""}>
+            {character.description}
+          </p>
+        </div>
       </Link>
     </div>
   );

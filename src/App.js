@@ -7,6 +7,9 @@ import Footer from "./components/Footer";
 import CharactersPage from "./containers/CharactersPage";
 import CharacterPage from "./containers/CharacterPage";
 import ComicsPage from "./containers/ComicsPage";
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { faBolt } from "@fortawesome/free-solid-svg-icons";
+library.add(faBolt);
 
 function App() {
   return (

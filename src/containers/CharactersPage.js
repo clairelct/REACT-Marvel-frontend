@@ -85,7 +85,7 @@ const CharactersPage = () => {
           </form>
         </div>
 
-        <h2>Characters !</h2>
+        <h1>Characters</h1>
 
         {/* Personnages */}
         <div className="characters-container">
