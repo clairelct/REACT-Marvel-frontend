@@ -1,7 +1,7 @@
 /* COMMON RULES */
 :root {
   --grey-pale: #f6f5f5;
-  --grey-dark: #111111;
+  --grey-dark: #131313;
   --red: #eb5555;
 }
 .loader {
@@ -27,20 +27,40 @@ h4 {
 }
 h1 {
   text-align: center;
-  font-size: 56px;
-  margin: 15px 0 25px;
+  font-size: 70px;
+  line-height: 80px;
+  margin: 15px auto;
+}
+h2 {
+  font-size: 55px;
+  line-height: 65px;
+  margin-bottom: 15px;
+}
+.bloc-title div {
+  height: 2px;
+  width: 50%;
+  margin: 0 auto;
+  background: linear-gradient(
+    100deg,
+    rgba(22, 22, 22, 1) 0%,
+    rgba(235, 85, 85, 1) 50%,
+    rgba(22, 22, 22, 1) 100%
+  );
 }
 
 a {
   text-decoration: none;
   color: inherit;
 }
+.bold {
+  font-weight: bold;
+}
 .container {
   width: 70%;
   margin: 0 auto;
 }
 main .container {
-  padding: 20px 0;
+  padding: 50px 0;
   /* background-color: #04045f; */
 }
 .responsive-img {
@@ -49,7 +69,6 @@ main .container {
   object-fit: cover;
   object-position: center;
 }
-
 /* GRID SYSTEM for Comics, Characters */
 .characters-container,
 .comics-container {
@@ -59,6 +78,7 @@ main .container {
 .item-container {
   width: calc(100% / 2 - (40px / 2));
   margin-right: 20px;
+  margin-bottom: 30px;
   padding: 15px;
   /* border: 1px solid rgb(37, 82, 82); */
   position: relative;
@@ -77,16 +97,17 @@ main .container {
   line-height: 50px;
   margin-left: -65px;
   z-index: 1000;
+  text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
 }
 
 .item-flex .item-img {
   flex: 1;
   height: 200px;
-  opacity: 0.6;
+  opacity: 1;
   transition: opacity 0.25s ease-in-out;
 }
-.item-flex:hover .item-img {
-  opacity: 1;
+.characters .item-flex:hover .item-img {
+  opacity: 0.5;
 }
 
 .item-flex .item-infos {
@@ -98,10 +119,10 @@ main .container {
   transition: width 0.25s ease-in-out;
   background-color: var(--grey-dark);
 }
-.item-flex:hover .item-infos {
+.characters .item-flex:hover .item-infos {
   width: 40%;
 }
-.item-flex:hover .item-infos.enlarge {
+.characters .item-flex:hover .item-infos.enlarge {
   width: 55%;
 }
 
@@ -135,7 +156,7 @@ main .container {
   transition: all 0.25s ease-in;
 }
 
-.item-flex:hover .item-infos p.set {
+.characters .item-flex:hover .item-infos p.set {
   /* display: block; */
   height: 55px;
   opacity: 1;
@@ -169,17 +190,11 @@ main .container {
 .favorite.added {
   color: var(--red);
 }
-
-/* SEARCH BAR */
-.searchbar-container {
-  background-color: darkblue;
-  padding: 10px 0;
+/* FOOTER */
+footer {
+  background-color: #000000;
 }
-.searchbar-container input {
-  display: block;
-  margin: 0 auto;
-  width: 50%;
-  padding: 10px 15px;
-  border-radius: 10px;
-  border: 1px solid grey;
+footer .container {
+  padding: 30px 0;
+  text-align: center;
 }

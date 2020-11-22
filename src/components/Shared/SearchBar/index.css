@@ -1,13 +1,18 @@
 /* SEARCH BAR */
-.searchbar-container {
-  background-color: red;
-  padding: 10px 0;
-}
+
 .searchbar-container input {
   display: block;
-  margin: 0 auto;
+  margin: 0 auto 50px;
   width: 50%;
-  padding: 10px 15px;
-  border-radius: 10px;
-  border: 1px solid grey;
+  padding: 15px 20px;
+  border: none;
+  background-color: black;
+  font-family: "Chakra Petch", sans-serif;
+  font-weight: bold;
+  font-size: 18px;
+  color: white;
+  outline: none;
+}
+.searchbar-container input::placeholder {
+  font-weight: normal;
 }

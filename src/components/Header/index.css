@@ -1,1 +1,32 @@
 /* HEADER */
+header {
+  background-color: black;
+}
+header .logo {
+  width: 120px;
+  display: block;
+  margin-right: 20px;
+}
+header .container {
+  display: flex;
+  align-items: center;
+  padding: 15px 0;
+}
+
+nav ul {
+  display: flex;
+  font-size: 20px;
+  padding: 0 20px;
+  font-weight: bold;
+}
+nav ul li {
+  padding: 20px 0;
+  border-bottom: 2px solid rgba(255, 255, 255, 0);
+  transition: border-bottom 0.25s ease-in-out;
+}
+nav ul li:hover {
+  border-bottom: 2px solid rgba(255, 255, 255, 1);
+}
+nav ul li:not(:last-child) {
+  margin-right: 25px;
+}

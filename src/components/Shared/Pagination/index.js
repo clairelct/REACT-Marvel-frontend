@@ -29,13 +29,14 @@ const Pagination = ({ limit, total, offset, setOffset }) => {
   return (
     <div className="pagination-container">
       <button
-        style={offset > 0 ? { display: "block" } : { display: "none" }}
+        className={offset > 0 ? "" : "disabled"}
+        // style={offset > 0 ? { display: "block" } : { display: "none" }}
         onClick={() => {
           setOffset(offset - limit);
           console.log(offset);
         }}
       >
-        -
+        previous
       </button>
       <button
         style={
@@ -45,7 +46,7 @@ const Pagination = ({ limit, total, offset, setOffset }) => {
           setOffset(offset + limit);
         }}
       >
-        +
+        next
       </button>
     </div>
   );

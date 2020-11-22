@@ -1,1 +1,8 @@
 /* FOOTER */
+footer {
+  background-color: #000000;
+}
+footer .container {
+  padding: 35px 0;
+  text-align: center;
+}

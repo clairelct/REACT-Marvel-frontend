@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import Cookies from "js-cookie";
 import "./index.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Galaxy from "../../../assets/galaxy.jpg";
 
 const CharacterItem = ({ character, favCharacters, setFavCharacters }) => {
   // FONCTION D'AJOUT EN FAVORIS
@@ -29,7 +30,7 @@ const CharacterItem = ({ character, favCharacters, setFavCharacters }) => {
   // console.log("test cookie:", test);
 
   return (
-    <div className="item-container">
+    <div className="characters item-container">
       <div
         className={
           favCharacters.indexOf(character.id) !== -1
@@ -46,7 +47,11 @@ const CharacterItem = ({ character, favCharacters, setFavCharacters }) => {
         <div className="item-img">
           <img
             className="responsive-img"
-            src={character.thumbnail.path + "." + character.thumbnail.extension}
+            src={
+              character.thumbnail.path.includes("image_not_available")
+                ? Galaxy
+                : character.thumbnail.path + "." + character.thumbnail.extension
+            }
             alt={`Portrait of ${character.name}`}
           />
         </div>

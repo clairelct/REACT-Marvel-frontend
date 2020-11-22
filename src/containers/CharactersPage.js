@@ -4,6 +4,8 @@ import Loader from "react-loader-spinner";
 //import SearchBar from "../components/Shared/SearchBar";
 import CharacterItem from "../components/Characters/CharacterItem";
 import Pagination from "../components/Shared/Pagination";
+import "../components/Shared/SearchBar/index.css";
+import "../components/Shared/Pagination/index.css";
 
 const CharactersPage = () => {
   const [characters, setCharacters] = useState([]);
@@ -59,7 +61,6 @@ const CharactersPage = () => {
     // }
     // setCharacters(newCharacters);
   };
-  console.log(favCharacters);
 
   return isLoading ? (
     <Loader
@@ -73,19 +74,21 @@ const CharactersPage = () => {
   ) : (
     <main>
       <div className="container">
-        {/* <SearchBar /> */}
-        <div className="searchbar-container">
-          <form>
-            <input
-              type="search"
-              placeholder="I'm looking after..."
-              onChange={handleChange}
-              value={search}
-            />
-          </form>
+        <div className="bloc-title">
+          <h1>Characters</h1>
+          <div></div>
         </div>
 
-        <h1>Characters</h1>
+        {/* <SearchBar /> */}
+
+        <form className="searchbar-container">
+          <input
+            type="search"
+            placeholder="I'm looking after..."
+            onChange={handleChange}
+            value={search}
+          />
+        </form>
 
         {/* Personnages */}
         <div className="characters-container">

@@ -9,6 +9,8 @@ const ComicsPage = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [total, setTotal] = useState(0);
   const [offset, setOffset] = useState(0);
+  const [search, setSearch] = useState("");
+  const [favComics, setFavComics] = useState([]);
 
   const limit = 10; // à mettre sur 100
 
@@ -34,6 +36,19 @@ const ComicsPage = () => {
     fetchData();
   }, [offset]);
 
+  // FONCTION DE RECHERCHE
+  const handleChange = (e) => {
+    setSearch(e.target.value);
+
+    //Copie, modifie(filtrage), remplace;
+    const searchComics = [...comics];
+    const filtered = searchComics.filter((comic) =>
+      comic.title.includes(search)
+    );
+    console.log(filtered);
+    setComics(filtered);
+  };
+
   return isLoading ? (
     <Loader
       className="loader"
@@ -46,12 +61,33 @@ const ComicsPage = () => {
   ) : (
     <main>
       <div className="container">
-        <h2>Comics !</h2>
+        <div className="bloc-title">
+          <h1>Comics</h1>
+          <div></div>
+        </div>
+
+        {/* <SearchBar /> */}
+
+        <form className="searchbar-container">
+          <input
+            type="search"
+            placeholder="I'm looking after..."
+            onChange={handleChange}
+            value={search}
+          />
+        </form>
 
         {/* Comics */}
         <div className="comics-container">
           {comics.map((comic, index) => {
-            return <ComicItem key={comic.id} comic={comic} />;
+            return (
+              <ComicItem
+                key={comic.id}
+                comic={comic}
+                favComics={favComics}
+                setFavComics={setFavComics}
+              />
+            );
           })}
         </div>
 

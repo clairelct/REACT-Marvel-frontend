@@ -19,14 +19,11 @@ function App() {
         <Route path="/characters/:id">
           <CharacterPage />
         </Route>
-        <Route path="/characters">
-          <CharactersPage />
-        </Route>
         <Route path="/comics">
           <ComicsPage />
         </Route>
         <Route path="/">
-          <p>Home</p>
+          <CharactersPage />
         </Route>
       </Switch>
       <Footer></Footer>
