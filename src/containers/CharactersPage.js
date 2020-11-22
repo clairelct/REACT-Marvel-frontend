@@ -15,20 +15,18 @@ const CharactersPage = () => {
   const [search, setSearch] = useState("");
   const [favCharacters, setFavCharacters] = useState([]);
 
-  const limit = 10; // à mettre sur 100
+  const limit = 12; // à mettre sur 100
 
   // Collecte de datas
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:3001/characters?limit=${limit}&offset=${offset}`
+          `https://marvel-backend-claire.herokuapp.com/characters?limit=${limit}&offset=${offset}`
         );
         //console.log(response.data);
         //console.log("total", response.data.data.total);
         if (response.data.code === 200) {
-          //setData(response.data);
-
           setTotal(response.data.data.total);
           setCharacters(response.data.data.results);
           setIsLoading(false);
@@ -49,17 +47,8 @@ const CharactersPage = () => {
     const filtered = searchCharacters.filter((character) =>
       character.name.includes(search)
     );
-    console.log(filtered);
+    //console.log(filtered);
     setCharacters(filtered);
-
-    // const newCharacters = [];
-    // for (let i = 0; i < characters.length; i++) {
-    //   // Si le mot-clé existe et renvoie à un emoji
-    //   if (characters[i].name.includes(search)) {
-    //     newCharacters.push(characters[i]);
-    //   }
-    // }
-    // setCharacters(newCharacters);
   };
 
   return isLoading ? (

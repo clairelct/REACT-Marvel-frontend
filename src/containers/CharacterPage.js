@@ -15,7 +15,7 @@ const CharacterPage = () => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:3001/characters/${id}`
+          `https://marvel-backend-claire.herokuapp.com/characters/${id}`
         );
         //console.log("response", response.data);
         if (response.data.code === 200) {
@@ -30,7 +30,7 @@ const CharacterPage = () => {
     const fetchDataComics = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:3001/characters/${id}/comics`
+          `https://marvel-backend-claire.herokuapp.com/characters/${id}/comics`
         );
         //console.log("response", response.data);
         if (response.data.code === 200) {

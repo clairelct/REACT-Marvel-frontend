@@ -9,24 +9,28 @@ const ComicsPage = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [total, setTotal] = useState(0);
   const [offset, setOffset] = useState(0);
+  //
   const [search, setSearch] = useState("");
+  const [filteredComics, setFilteredComics] = useState([]);
+  //
   const [favComics, setFavComics] = useState([]);
 
-  const limit = 10; // à mettre sur 100
+  const limit = 12; // à mettre sur 100
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:3001/comics?limit=${limit}&offset=${offset}`
+          `https://marvel-backend-claire.herokuapp.com/comics?limit=${limit}&offset=${offset}`
         );
-        console.log(response.data);
-        console.log("total", response.data.data.total);
+        //console.log(response.data);
+        //console.log("total", response.data.data.total);
         if (response.data.code === 200) {
           //setData(response.data);
 
           setTotal(response.data.data.total);
           setComics(response.data.data.results);
+          setFilteredComics(response.data.data.results);
           setIsLoading(false);
         }
       } catch (error) {
@@ -37,16 +41,17 @@ const ComicsPage = () => {
   }, [offset]);
 
   // FONCTION DE RECHERCHE
-  const handleChange = (e) => {
+  const handleSearch = (e) => {
     setSearch(e.target.value);
 
-    //Copie, modifie(filtrage), remplace;
-    const searchComics = [...comics];
-    const filtered = searchComics.filter((comic) =>
-      comic.title.includes(search)
-    );
-    console.log(filtered);
-    setComics(filtered);
+    // Copie, modifie (filtrage), remplace
+    //const searchComics = [...comics];
+    const filtered = filteredComics.filter((comic) => {
+      return comic.title.toLowerCase().includes(search.toLowerCase());
+    });
+    //console.log("filtered", filtered);
+
+    setFilteredComics(filtered);
   };
 
   return isLoading ? (
@@ -72,14 +77,14 @@ const ComicsPage = () => {
           <input
             type="search"
             placeholder="I'm looking after..."
-            onChange={handleChange}
+            onChange={handleSearch}
             value={search}
           />
         </form>
 
         {/* Comics */}
         <div className="comics-container">
-          {comics.map((comic, index) => {
+          {filteredComics.map((comic, index) => {
             return (
               <ComicItem
                 key={comic.id}
