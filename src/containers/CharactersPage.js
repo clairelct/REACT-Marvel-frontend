@@ -15,41 +15,35 @@ const CharactersPage = () => {
   const [search, setSearch] = useState("");
   const [favCharacters, setFavCharacters] = useState([]);
 
-  const limit = 12; // à mettre sur 100
+  const limit = 12; // set to 100
+  const wording = "name";
+  let filters = "";
 
-  // Collecte de datas
+  if (search.length === 0) {
+    // All results (no search)
+    filters = `http://localhost:3001/characters?limit=${limit}&offset=${offset}&orderBy=${wording}`;
+  } else {
+    // Filtered results
+    filters = `http://localhost:3001/characters?limit=${limit}&offset=${offset}&orderBy=${wording}&${wording}StartsWith=${search}`;
+  }
+
+  // FETCH DATA
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(
-          `https://marvel-backend-claire.herokuapp.com/characters?limit=${limit}&offset=${offset}`
-        );
-        //console.log(response.data);
-        //console.log("total", response.data.data.total);
+        const response = await axios.get(filters);
+
         if (response.data.code === 200) {
-          setTotal(response.data.data.total);
           setCharacters(response.data.data.results);
           setIsLoading(false);
+          setTotal(response.data.data.total);
         }
       } catch (error) {
         console.log(error);
       }
     };
     fetchData();
-  }, [offset]);
-
-  // FONCTION DE RECHERCHE
-  const handleChange = (e) => {
-    setSearch(e.target.value);
-
-    // Copie, modifie (filtrage), remplace
-    const searchCharacters = [...characters];
-    const filtered = searchCharacters.filter((character) =>
-      character.name.includes(search)
-    );
-    //console.log(filtered);
-    setCharacters(filtered);
-  };
+  }, [offset, search]);
 
   return isLoading ? (
     <Loader
@@ -74,12 +68,12 @@ const CharactersPage = () => {
           <input
             type="search"
             placeholder="I'm looking after..."
-            onChange={handleChange}
             value={search}
+            onChange={(event) => setSearch(event.target.value)}
           />
         </form>
 
-        {/* Personnages */}
+        {/* Characters list */}
         <div className="characters-container">
           {characters.map((character, index) => {
             return (
