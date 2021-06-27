@@ -20,9 +20,9 @@ const ComicsPage = () => {
   let filters = "";
 
   if (search.length === 0) {
-    filters = `http://localhost:3001/comics?limit=${limit}&offset=${offset}&orderBy=${wording}`;
+    filters = `https://marvel-backend-claire.herokuapp.com/comics?limit=${limit}&offset=${offset}&orderBy=${wording}`;
   } else {
-    filters = `http://localhost:3001/comics?limit=${limit}&offset=${offset}&orderBy=${wording}&${wording}StartsWith=${search}`;
+    filters = `https://marvel-backend-claire.herokuapp.com/comics?limit=${limit}&offset=${offset}&orderBy=${wording}&${wording}StartsWith=${search}`;
   }
 
   useEffect(() => {

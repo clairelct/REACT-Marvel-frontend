@@ -21,10 +21,10 @@ const CharactersPage = () => {
 
   if (search.length === 0) {
     // All results (no search)
-    filters = `http://localhost:3001/characters?limit=${limit}&offset=${offset}&orderBy=${wording}`;
+    filters = `https://marvel-backend-claire.herokuapp.com/characters?limit=${limit}&offset=${offset}&orderBy=${wording}`;
   } else {
     // Filtered results
-    filters = `http://localhost:3001/characters?limit=${limit}&offset=${offset}&orderBy=${wording}&${wording}StartsWith=${search}`;
+    filters = `https://marvel-backend-claire.herokuapp.com/characters?limit=${limit}&offset=${offset}&orderBy=${wording}&${wording}StartsWith=${search}`;
   }
 
   // FETCH DATA
